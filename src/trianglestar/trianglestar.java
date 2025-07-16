@@ -1,11 +1,17 @@
 package trianglestar;
 
+import java.util.Scanner;
+
 public class trianglestar {
     public static void main(String[] args) {
-        String triangle = "*******************";  // 19 yıldız
-        for (int i = 0; i <= triangle.length(); i += 2) {
-            String sonuc = triangle.substring(0, triangle.length() - i);
-            System.out.println(sonuc);
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Basamak sayısını giriniz :");
+        int n = scanner.nextInt();
+        for (int i = n; i >= 1; i--) {
+            for (int k = 0; k < (2 * i - 1); k++) {
+                System.out.print("*");
+            }
+            System.out.println();
         }
     }
 }
