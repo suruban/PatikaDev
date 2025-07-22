@@ -20,7 +20,7 @@ public class salaryGenerator {
         int hireYear  = scanner.nextInt();
 
         if(salary > 1000) {
-            tax = (double) (salary * 0.03);
+            tax =salary * 0.03;
             newSalary = salary - tax;
         }
         if(clock > 40) {
@@ -28,13 +28,13 @@ public class salaryGenerator {
            newSalary = newSalary + bonus;
         }
         if(2021-hireYear <10 ) {
-            raise = (double) (salary * 0.05);
+            raise = salary * 0.05;
         }
         if(2021-hireYear >9 && 2021-hireYear <20 ) {
-            raise = (double) (salary * 0.1);
+            raise = salary * 0.1;
         }
         if(2021-hireYear >19) {
-            raise = (double) (salary * 0.15);
+            raise = salary * 0.15;
         }
 
         newSalary = newSalary + raise;
@@ -47,7 +47,6 @@ public class salaryGenerator {
         System.out.println("Maaş Artışı :" + raise + " TL");
         System.out.println("Vergi Ve Bonuslar İle Birlikte  :" + newSalary +" TL");
         System.out.println("Toplam :" + newSalary +" TL");
-        System.out.println(newSalary);
         scanner.close();
 
 
