@@ -1,54 +1,68 @@
 package salaryGenerator;
 
-import java.util.Scanner;
-
 public class salaryGenerator {
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        double tax = 0;
-        double newSalary =0;
-        double bonus = 0;
-        double raise =0;
+    // Nitelikler
+    String name;
+    double salary;
+    int workHours;
+    int hireYear;
 
-        System.out.print("Adı :");
-        String name = scanner.nextLine();
-        System.out.print("Maaş :");
-        double salary = scanner.nextDouble();
-        System.out.print("Çalışma Saati :");
-        int clock = scanner.nextInt();
-        System.out.print("Başlangıç Yılı :");
-        int hireYear  = scanner.nextInt();
+    // Kurucu Metot
+    public salaryGenerator(String name, double salary, int workHours, int hireYear) {
+        this.name = name;
+        this.salary = salary;
+        this.workHours = workHours;
+        this.hireYear = hireYear;
+    }
 
-        if(salary > 1000) {
-            tax =salary * 0.03;
-            newSalary = salary - tax;
+    // Vergi Hesabı
+    public double tax() {
+        if (this.salary < 1000) {
+            return 0.0;
+        } else {
+            return this.salary * 0.03;
         }
-        if(clock > 40) {
-           bonus = (clock-40)*30;
-           newSalary = newSalary + bonus;
-        }
-        if(2021-hireYear <10 ) {
-            raise = salary * 0.05;
-        }
-        if(2021-hireYear >9 && 2021-hireYear <20 ) {
-            raise = salary * 0.1;
-        }
-        if(2021-hireYear >19) {
-            raise = salary * 0.15;
-        }
+    }
 
-        newSalary = newSalary + raise;
-        System.out.println("Adı :" + name);
-        System.out.println("Maaşı :" + salary +" TL");
-        System.out.println("Çalışma Saati :" + clock);
-        System.out.println("Başlangıç Yılı :" + hireYear);
-        System.out.println("Vergi  :" + tax +" TL");
-        System.out.println("Bonus :" + bonus +" TL");
-        System.out.println("Maaş Artışı :" + raise + " TL");
-        System.out.println("Vergi Ve Bonuslar İle Birlikte  :" + newSalary +" TL");
-        System.out.println("Toplam :" + newSalary +" TL");
-        scanner.close();
+    // Bonus Hesabı
+    public double bonus() {
+        if (this.workHours > 40) {
+            return (this.workHours - 40) * 30;
+        } else {
+            return 0.0;
+        }
+    }
 
+    // Maaş Artışı
+    public double raiseSalary() {
+        int currentYear = 2021;
+        int yearsWorked = currentYear - this.hireYear;
 
+        if (yearsWorked < 10) {
+            return this.salary * 0.05;
+        } else if (yearsWorked < 20) {
+            return this.salary * 0.10;
+        } else {
+            return this.salary * 0.15;
+        }
+    }
+
+    // Bilgileri Yazdır
+    public String toString() {
+        double tax = tax();
+        double bonus = bonus();
+        double raise = raiseSalary();
+        double salaryWithTaxAndBonus = this.salary - tax + bonus;
+        double totalSalary = this.salary + raise;
+
+        return "Adı : " + this.name +
+                "\nMaaşı : " + this.salary +
+                "\nÇalışma Saati : " + this.workHours +
+                "\nBaşlangıç Yılı : " + this.hireYear +
+                "\nVergi : " + tax +
+                "\nBonus : " + bonus +
+                "\nMaaş Artışı : " + raise +
+                "\nVergi ve Bonuslar ile birlikte maaş : " + salaryWithTaxAndBonus +
+                "\nToplam Maaş : " + totalSalary;
     }
 }
