@@ -1,9 +1,9 @@
-package findNum;
+package findChar;
 
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class findNum {
+public class findChar {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         System.out.println("Listedeki 4 harfi bulmak için tahmin et");
