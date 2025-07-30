@@ -24,6 +24,7 @@ public class wordFrequence {
 
         for (Map.Entry<Character, Integer> i : word.entrySet()) {
             System.out.println(i.getKey() + " : " + i.getValue());
+            
         }
 
 
